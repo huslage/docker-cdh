@@ -1,71 +1,77 @@
-docker-cloudera-quickstart
-==========================
 
-Docker Cloudera Quick Start Image
+# A Docker Image for Cloudera Quickstart
 
-Cloudera Hadoop 5 (CDH5)
+Run the CDH Quick Start image in a docker container.
 
-
-Now you can run the Cloudera Quick Start image without all the overhead of a Virtual Machine. Just use docker-cloudera-quickstart Image.
+The latest CDH release is on `master` and pinned versions can be found on
+dedicated branches.
 
 
-Based on Ubuntu 14.04 (Trusty LTS) 
+## Install
 
-Works with Cloudera CDH 5
+This image is somewhat large, so you might want to do a separate
 
-*UPDATED FOR LATEST VERSION - CDH5.3.2
+    docker pull svds/cdh
 
-
-*Under development. 
-
-
-#Instructions
-
-##Install
-To install the docker-cloudera-quickstart from docker-hub, simply use the following command:
-```
-docker run -i caioquirino/docker-cloudera-quickstart
-```
-##Use
-To use the up and running instance:
-```
-docker ps
-docker exec -i -t CONTAINER_ID bash -l
-```
-
-#Links
-
-Pull the image on Docker Hub: https://registry.hub.docker.com/u/caioquirino/docker-cloudera-quickstart/
-
-Github page: https://github.com/caioquirino/docker-cloudera-quickstart
+to install.
 
 
-# Checklist of components:
+## Use
 
-Apache Hadoop (Common, HDFS, MapReduce, YARN)
+Spin it up with 
 
-Apache HBase
+    docker run -td svds/cdh
 
-Apache ZooKeeper
+get the container id from
 
-Apache Oozie
+    docker ps
 
-Apache Hive
+watch logs with
 
-Hue (Apache licensed)
+    docker logs -f <container_id>
 
-Apache Flume
+attach to the container with
 
-Cloudera Impala (Apache licensed)
+    docker exec -it <container_id> bash -l
 
-Apache Sentry
+then run any of the usual cdh commands
 
-Apache Sqoop
+    hadoop fs -ls /
+    impala-shell
+    hbase shell
+    spark-submit
 
-Cloudera Search (Apache licensed)
+etc.
 
-Apache Spark
+
+## Components
+
+- Apache Hadoop (Common, HDFS, MapReduce, YARN)
+- Apache HBase
+- Apache ZooKeeper
+- Apache Oozie
+- Apache Hive
+- Hue (Apache licensed)
+- Apache Flume
+- Cloudera Impala (Apache licensed)
+- Apache Sentry
+- Apache Sqoop
+- Cloudera Search (Apache licensed)
+- Apache Spark
+
+
+## Links
+
+Pull the image on Docker Hub: https://registry.hub.docker.com/u/svds/cdh
+
+Github page: https://github.com/silicon-valley-data-science/docker-cdh
 
 [Cloudera Documentation](http://www.cloudera.com/content/cloudera/en/documentation/core/latest/)
 
-#Please report any issue or feedback if possible.
+
+## Credits
+
+This image started life as a modified fork of
+[caioquirino/docker-cloudera-quickstart](https://github.com/caioquirino/docker-cloudera-quickstart.git)
+and is now curated by the Silicon Valley Data Science engineering team.
+
